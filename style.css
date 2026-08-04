@@ -1,0 +1,132 @@
+/* ===== Design tokens ===== */
+:root{
+  --paper:#FAF7F0;
+  --paper-2:#F1EBDD;
+  --ink:#1B1B1B;
+  --ink-soft:#5B5750;
+  --deep:#173A45;      /* zellige teal-blue */
+  --deep-2:#0E272F;
+  --gold:#C08A28;       /* saffron gold */
+  --gold-soft:#E7C979;
+  --clay:#A8462B;       /* muted terracotta, used sparingly */
+  --green:#3D6E52;
+  --line:#E3DAC5;
+  --radius:14px;
+  --shadow:0 10px 30px -12px rgba(23,58,69,0.25);
+  --font-display:'Tajawal', sans-serif;
+  --font-body:'Tajawal', sans-serif;
+  --font-mono:'Space Grotesk', sans-serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  background:var(--paper);
+  color:var(--ink);
+  direction:rtl;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+button, input, textarea, select{font-family:inherit;}
+img{max-width:100%;display:block;}
+
+/* ===== Zellige pattern (signature element) ===== */
+.zellige-rule{
+  height:10px;
+  width:100%;
+  background-image:
+    linear-gradient(135deg, var(--gold) 25%, transparent 25%),
+    linear-gradient(225deg, var(--gold) 25%, transparent 25%),
+    linear-gradient(45deg, var(--gold) 25%, transparent 25%),
+    linear-gradient(315deg, var(--gold) 25%, transparent 25%);
+  background-position: 10px 0, 10px 0, 0 0, 0 0;
+  background-size: 20px 20px;
+  background-repeat: repeat-x;
+  opacity:.55;
+}
+
+/* ===== Layout shells ===== */
+.container{max-width:1120px;margin:0 auto;padding:0 24px;}
+.topbar{
+  position:sticky;top:0;z-index:20;
+  background:rgba(250,247,240,.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;max-width:1120px;margin:0 auto;
+}
+.brand{
+  font-family:var(--font-display);
+  font-weight:800;font-size:22px;color:var(--deep);
+  display:flex;align-items:center;gap:8px;
+}
+.brand .dot{width:9px;height:9px;border-radius:2px;background:var(--gold);transform:rotate(45deg);display:inline-block;}
+
+/* ===== Buttons ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 22px;border-radius:10px;border:1px solid transparent;
+  font-weight:700;font-size:15px;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--deep);color:var(--paper);}
+.btn-primary:hover{background:var(--deep-2);}
+.btn-gold{background:var(--gold);color:var(--deep-2);}
+.btn-gold:hover{background:var(--gold-soft);}
+.btn-ghost{background:transparent;color:var(--deep);border-color:var(--deep);}
+.btn-ghost:hover{background:var(--deep);color:var(--paper);}
+.btn-danger{background:transparent;color:var(--clay);border-color:var(--clay);}
+.btn-danger:hover{background:var(--clay);color:#fff;}
+.btn-block{width:100%;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ===== Cards & forms ===== */
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;}
+.field input, .field textarea{
+  width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+  background:var(--paper);font-size:15px;color:var(--ink);
+}
+.field input:focus, .field textarea:focus{
+  outline:none;border-color:var(--deep);background:#fff;
+}
+.field small{color:var(--ink-soft);font-size:12px;}
+.hint{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+
+/* ===== Utility ===== */
+.eyebrow{
+  font-family:var(--font-mono);letter-spacing:.06em;text-transform:uppercase;
+  font-size:12px;color:var(--gold);font-weight:700;
+}
+.muted{color:var(--ink-soft);}
+.center{text-align:center;}
+.stack{display:flex;flex-direction:column;gap:12px;}
+.row{display:flex;gap:12px;flex-wrap:wrap;}
+.spread{display:flex;align-items:center;justify-content:space-between;}
+.badge{
+  display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  background:var(--paper-2);color:var(--deep);
+}
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--deep-2);color:#fff;padding:12px 20px;border-radius:10px;
+  font-size:14px;box-shadow:var(--shadow);z-index:100;opacity:0;pointer-events:none;
+  transition:opacity .25s ease, bottom .25s ease;
+}
+.toast.show{opacity:1;bottom:34px;}
+
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+
+@media(max-width:720px){
+  .topbar-inner{padding:14px 16px;}
+  .container{padding:0 16px;}
+}

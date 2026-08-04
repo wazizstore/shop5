@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سوق ديالي — صايب المتجر ديالك فبلاش</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero{
+    padding:72px 0 56px;
+    background:
+      radial-gradient(circle at 90% -10%, rgba(192,138,40,.18), transparent 55%),
+      var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  .hero h1{
+    font-family:var(--font-display);font-weight:900;
+    font-size:clamp(32px,4.5vw,52px);line-height:1.15;color:var(--deep);margin:14px 0 18px;
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p.lead{font-size:17px;color:var(--ink-soft);max-width:52ch;margin-bottom:28px;line-height:1.7;}
+  .steps{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
+  .step{display:flex;gap:14px;align-items:flex-start;}
+  .step-num{
+    font-family:var(--font-mono);font-weight:700;color:var(--deep);
+    background:var(--paper-2);border:1px solid var(--line);
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .step-text b{display:block;color:var(--ink);}
+  .step-text span{color:var(--ink-soft);font-size:14px;}
+
+  .auth-card{padding:32px;max-width:420px;justify-self:end;width:100%;}
+  .tabs{display:flex;background:var(--paper-2);border-radius:10px;padding:4px;margin-bottom:22px;}
+  .tab{flex:1;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink-soft);}
+  .tab.active{background:#fff;color:var(--deep);box-shadow:0 2px 6px rgba(0,0,0,.06);}
+  .form-panel{display:none;}
+  .form-panel.active{display:block;}
+  #err{color:var(--clay);font-size:13px;margin-top:8px;display:none;}
+
+  .features{padding:60px 0;border-top:1px solid var(--line);}
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;}
+  .feature{padding:24px;}
+  .feature .ic{width:40px;height:40px;border-radius:10px;background:var(--deep);color:var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;font-weight:800;}
+  .feature h3{font-family:var(--font-display);color:var(--deep);margin:0 0 6px;font-size:17px;}
+  .feature p{color:var(--ink-soft);font-size:14px;margin:0;line-height:1.6;}
+
+  footer{padding:28px 0;text-align:center;color:var(--ink-soft);font-size:13px;}
+
+  @media(max-width:860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .auth-card{justify-self:stretch;max-width:none;}
+    .features-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span> سوق ديالي</div>
+    <a href="#auth" class="btn btn-ghost">دخول / تسجيل</a>
+  </div>
+</div>
+<div class="zellige-rule"></div>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="eyebrow">منصة مجانية للبيع أونلاين</span>
+      <h1>صايب <span>المتجر</span> ديالك<br>فأقل من 5 دقايق</h1>
+      <p class="lead">زيد المنتجات، الصور، الأثمنة والوصف — وحصل رابط ديال متجر خاص بيك تقدر تشاركو مع الزبناء ديالك. الطلبات كيوصلوك مباشرة فـ Google Sheet، وتقدر تربط Facebook Pixel باش تتبع الحملات ديالك.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text"><b>صايب حساب</b><span>بالإيميل، بلاش، بلا بطاقة بنكية</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text"><b>زيد المتجر والمنتجات ديالك</b><span>عنوان، صورة، وصف، ثمن</span></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text"><b>شارك الرابط وبيع</b><span>الطلبات كيتسجلو فـ Google Sheet ديالك مباشرة</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card auth-card" id="auth">
+      <div class="tabs">
+        <div class="tab active" data-tab="login">دخول</div>
+        <div class="tab" data-tab="register">حساب جديد</div>
+      </div>
+
+      <div class="form-panel active" id="panel-login">
+        <div class="field">
+          <label>الإيميل</label>
+          <input type="email" id="login-email" placeholder="email@example.com">
+        </div>
+        <div class="field">
+          <label>الكلمة السرية</label>
+          <input type="password" id="login-pass" placeholder="••••••••">
+        </div>
+        <button class="btn btn-primary btn-block" id="btn-login">دخول</button>
+      </div>
+
+      <div class="form-panel" id="panel-register">
+        <div class="field">
+          <label>الإيميل</label>
+          <input type="email" id="reg-email" placeholder="email@example.com">
+        </div>
+        <div class="field">
+          <label>الكلمة السرية</label>
+          <input type="password" id="reg-pass" placeholder="6 حروف على الأقل">
+        </div>
+        <button class="btn btn-gold btn-block" id="btn-register">صايب حساب</button>
+      </div>
+
+      <div id="err"></div>
+    </div>
+  </div>
+</section>
+
+<div class="zellige-rule"></div>
+
+<section class="features">
+  <div class="container">
+    <span class="eyebrow">اللي كتقدر دير</span>
+    <div class="features-grid">
+      <div class="feature card">
+        <div class="ic">✎</div>
+        <h3>منتجات بلا حدود</h3>
+        <p>زيد عنوان، وصف، صورة وثمن لكل منتج، وبدلهم فأي وقت.</p>
+      </div>
+      <div class="feature card">
+        <div class="ic">⛃</div>
+        <h3>طلبات فـ Google Sheet</h3>
+        <p>كل طلب كيتسجل مباشرة فقاعدة البيانات ديالك، بلا سيرفر.</p>
+      </div>
+      <div class="feature card">
+        <div class="ic">◎</div>
+        <h3>Facebook Pixel</h3>
+        <p>ربط الـ Pixel ID ديالك وتبع الحملات ديالك بدقة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>مصايب بـ Firebase + Google Sheets — استضافة مجانية عبر GitHub Pages</footer>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { firebaseConfig } from './firebase-config.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const errBox = document.getElementById('err');
+function showErr(msg){ errBox.textContent = msg; errBox.style.display='block'; }
+function clearErr(){ errBox.style.display='none'; }
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+    clearErr();
+  });
+});
+
+document.getElementById('btn-register').addEventListener('click', async ()=>{
+  clearErr();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass = document.getElementById('reg-pass').value;
+  if(!email || pass.length < 6){ showErr('دخل إيميل صحيح وكلمة سرية ديال 6 حروف على الأقل.'); return; }
+  try{
+    await createUserWithEmailAndPassword(auth, email, pass);
+    window.location.href = 'dashboard.html';
+  }catch(e){ showErr(friendlyError(e.code)); }
+});
+
+document.getElementById('btn-login').addEventListener('click', async ()=>{
+  clearErr();
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  if(!email || !pass){ showErr('دخل الإيميل والكلمة السرية.'); return; }
+  try{
+    await signInWithEmailAndPassword(auth, email, pass);
+    window.location.href = 'dashboard.html';
+  }catch(e){ showErr(friendlyError(e.code)); }
+});
+
+function friendlyError(code){
+  const map = {
+    'auth/email-already-in-use':'هاد الإيميل مستعمل من قبل.',
+    'auth/invalid-email':'الإيميل ماشي صحيح.',
+    'auth/weak-password':'الكلمة السرية خاصها 6 حروف على الأقل.',
+    'auth/wrong-password':'الكلمة السرية ماشي صحيحة.',
+    'auth/user-not-found':'ماكاينش حساب بهاد الإيميل.',
+    'auth/invalid-credential':'الإيميل ولا الكلمة السرية ماشي صحيحين.'
+  };
+  return map[code] || 'وقع خطأ. جرب مرة أخرى.';
+}
+
+// إلا كان اليوزر داخل من قبل، سيفطو مباشرة للوحة التحكم
+onAuthStateChanged(auth, (user)=>{
+  if(user){ window.location.href = 'dashboard.html'; }
+});
+</script>
+</body>
+</html>
